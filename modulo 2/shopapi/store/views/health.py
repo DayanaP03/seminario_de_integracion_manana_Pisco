@@ -7,4 +7,7 @@ from rest_framework.response import Response
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def health_check(request):
-    return Response({'status': 'ok', 'version': '1.0'})
+    return Response({
+        'service': 'shopapi',
+        'status': 'ok', 
+        'version': '1.0'})
