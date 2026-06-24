@@ -76,35 +76,6 @@ class PasswordResetRequestView(APIView):
                 pass
 
         return Response({'detail': 'If an account with that email exists, a password reset email has been sent.'})
-    
-
-class PasswordResetRequestView(APIView):
-    """
-    POST /api/auth/password-reset/
-    Body: { "email": "user@example.com" }
-
-    Genera un token y envía el correo. Siempre responde 200
-    independientemente de si el email existe (anti-enumeración de usuarios).
-    """
-    permission_classes = []
-
-    def post(self, request):
-        serializer = PasswordResetRequestSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
-        email = serializer.validated_data['email']
-        try:
-            user  = User.objects.get(email=email, is_active=True)
-            uid   = urlsafe_base64_encode(force_bytes(user.pk))
-            token = default_token_generator.make_token(user)
-            send_password_reset_email(user, uid, token)
-        except User.DoesNotExist:
-            pass  # No revelar si el email está registrado
-
-        return Response(
-            {'detail': 'Si el correo está registrado, recibirás un enlace de recuperación.'},
-            status=status.HTTP_200_OK,
-        )
 
 
 class PasswordResetConfirmView(APIView):
