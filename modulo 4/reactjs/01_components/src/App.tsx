@@ -1,18 +1,27 @@
 // src/App.tsx
-
-//import WelcomeBanner       from './components/WelcomeBanner'
-//import UserGreeting        from './components/UserGreeting'
-//import CurrentDateDisplay  from './components/CurrentDateDisplay'
-// ColoredBox          from './components/ColoredBox'
-// ConditionalGreeting from './components/ConditionalGreeting'
-//import FruitList           from './components/FruitList'
-//import PriceTag            from './components/PriceTag'
-//import StatusBadge         from './components/StatusBadge'
-//import MiniProfileCard     from './components/MiniProfileCard'
-//import SimpleInfoTable     from './components/SimpleInfoTable'
+import WelcomeBanner       from './components/WelcomeBanner'
+import UserGreeting        from './components/UserGreeting'
+import CurrentDateDisplay  from './components/CurrentDateDisplay'
+import ColoredBox          from './components/ColoredBox'
+import ConditionalGreeting from './components/ConditionalGreeting'
+import FruitList           from './components/FruitList'
+import PriceTag            from './components/PriceTag'
+import StatusBadge         from './components/StatusBadge'
+import MiniProfileCard     from './components/MiniProfileCard'
+import SimpleInfoTable     from './components/SimpleInfoTable'
 import ProductCard         from './components/ProductCard'
-import ProductCatalogList  from './components/WelcomeBanner'
-//import UserProfileCard     from './components/UserProfileCard'
+import ProductCatalogList  from './components/ProductCatalogList'
+import UserProfileCard     from './components/UserProfileCard'
+import DigitalCounter_mp from './01useState/DigitalCounter_mp'
+import DigitalCounter from './01useState/DigitalCounter'
+import SafeHotelCountermp from './01useState/SafeCounter_mp'
+import HotelServicesManager from './01useState/TaskManager_mp'
+import GuestRegistration from './01useState/UserProfileForm_mp'
+import UserProfileForm_mp from './01useState/UserProfileForm_mp'
+import DocumentTitle_mp from './02useEffect/DocumentTitle_mp'
+import FechUsermp from './02useEffect/FetchUser_mp'
+import AutoFocusForm_mp from './03useRef/AutoFocusForm_mp'
+import InlineEditor_mp from './03useRef/InlineEditor_mp'
 
 // ┌──────────────────────────────────────────────────────────────────────────┐
 // │  Cambia PASO y guarda (Ctrl+S) para navegar entre componentes.          │
@@ -30,7 +39,7 @@ import ProductCatalogList  from './components/WelcomeBanner'
 // │  12  ProductCatalogList  — lista con renderizado condicional de items   │
 // │  13  UserProfileCard     — ejercicio: props complejas + rol             │
 // └──────────────────────────────────────────────────────────────────────────┘
-const PASO = 1
+const PASO: number = 21
 
 const fruits = [
   { name: 'Manzana', emoji: '🍎', calories: 52 },
@@ -104,7 +113,24 @@ export default function App() {
         bio="Desarrolladora fullstack con 5 años de experiencia."
       />
     ) :
+    PASO === 14 ? (
+  <div>
+    <h2>Reserva tu Hotel</h2>
+    <DigitalCounter_mp label="Habitaciones" initialValue={1} />
+    <DigitalCounter_mp label="Adultos" initialValue={2} />
+    <DigitalCounter_mp label="Niños" initialValue={0} min={0} />
+  </div>
+) :
+
+   PASO === 15 ? <SafeHotelCountermp /> :
+   PASO === 16 ? <HotelServicesManager /> :
+   PASO === 17 ? <UserProfileForm_mp /> :
+   PASO === 18 ? <DocumentTitle_mp /> :
+   PASO === 19 ? <FechUsermp /> :
+   PASO === 20 ? <AutoFocusForm_mp /> :
+   PASO === 21 ? <InlineEditor_mp /> :
     <p style={{ color: '#e00' }}>Paso {PASO}: crea el componente primero</p>
+
 
   return (
     <main style={{ maxWidth: 540, margin: '40px auto', fontFamily: 'sans-serif', padding: '0 16px' }}>

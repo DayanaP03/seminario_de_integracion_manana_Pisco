@@ -2,12 +2,6 @@
 
 import { useState } from 'react'
 
-interface DigitalCounterProps {
-  initialValue?: number
-  step?: number
-  label?: string
-}
-
 export default function DigitalCounter({
   initialValue = 0,
   step = 1,
