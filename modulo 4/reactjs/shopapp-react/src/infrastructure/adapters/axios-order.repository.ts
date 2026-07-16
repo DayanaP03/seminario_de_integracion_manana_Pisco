@@ -7,7 +7,8 @@ import type { PaginatedResult } from '@/domain/entities/paginated-result.entity'
 import type { OrderStats } from '@/domain/entities/order-stats.entity'
 
 export class AxiosOrderRepository implements OrderRepository {
-  async getOrders(page = 1): Promise<PaginatedResult<Order>> {
+  async getOrders(page = 1, _status?: import('@/domain/enums/order-status.enum').OrderStatus): Promise<PaginatedResult<Order>> {
+
     try {
       const { data } = await apiClient.get<PaginatedResult<Order>>('/orders/', {
         params: { page },
@@ -62,4 +63,15 @@ export class AxiosOrderRepository implements OrderRepository {
     }
   }
 
+  async updateOrderStatus(
+    id: number,
+    status: import('@/domain/enums/order-status.enum').OrderStatus,
+  ): Promise<Order> {
+    try {
+      const { data } = await apiClient.patch<Order>(`/orders/${id}/`, { status })
+      return data
+    } catch (err) {
+      throw parseApiError(err)
+    }
+  }
 }

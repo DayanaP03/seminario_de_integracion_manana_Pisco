@@ -3,16 +3,18 @@ import type { OrderRepository } from '@/domain/ports/order.repository'
 import type { Order } from '@/domain/entities/order.entity'
 import type { PaginatedResult } from '@/domain/entities/paginated-result.entity'
 import type { AddItemDto } from '@/application/dtos/add-item.dto'
+import type { OrderStatus } from '@/domain/enums/order-status.enum'
 
 export class OrderUseCase {
+
   private readonly orderRepository: OrderRepository
 
   constructor(orderRepository: OrderRepository) {
     this.orderRepository = orderRepository
   }
 
-  getOrders(page = 1): Promise<PaginatedResult<Order>> {
-    return this.orderRepository.getOrders(page)
+  getOrders(page = 1, status?: OrderStatus): Promise<PaginatedResult<Order>> {
+    return this.orderRepository.getOrders(page, status)
   }
 
   getOrder(id: number): Promise<Order> {
@@ -31,5 +33,16 @@ export class OrderUseCase {
     return this.orderRepository.confirmOrder(orderId)
   }
 
+  getStats(): Promise<import('@/domain/entities/order-stats.entity').OrderStats> {
+    return this.orderRepository.getStats()
+  }
 
+  updateOrderStatus(
+    id: number,
+    status: import('@/domain/enums/order-status.enum').OrderStatus,
+  ): Promise<Order> {
+    return this.orderRepository.updateOrderStatus(id, status)
+  }
 }
+
+

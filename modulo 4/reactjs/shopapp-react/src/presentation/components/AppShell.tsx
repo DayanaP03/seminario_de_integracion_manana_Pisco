@@ -20,11 +20,6 @@ import { UserAvatar } from './UserAvatar'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-/** Obtiene las iniciales del username para el avatar. */
-function getInitials(username: string): string {
-  return username.slice(0, 2).toUpperCase()
-}
-
 /** Clases para los enlaces de navegación activos/inactivos. */
 function navLinkClass({ isActive }: { isActive: boolean }) {
   return [

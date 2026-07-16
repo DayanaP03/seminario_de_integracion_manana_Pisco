@@ -14,7 +14,27 @@ export class CategoryUseCase {
     return this.categoryRepository.getCategories()
   }
 
+  createCategory(payload: {
+    name: string
+    slug: string
+    description?: string
+    is_active?: boolean
+  }): Promise<Category> {
+    return this.categoryRepository.createCategory(payload)
+  }
+
+  updateCategory(
+    id: number,
+    payload: { name?: string; description?: string; is_active?: boolean },
+  ): Promise<Category> {
+    return this.categoryRepository.updateCategory(id, payload)
+  }
+
+  deleteCategory(id: number): Promise<void> {
+    return this.categoryRepository.deleteCategory(id)
+  }
+
   getStats(): Promise<CategoryStats> {
-  return this.categoryRepository.getStats()
-}
+    return this.categoryRepository.getStats()
+  }
 }

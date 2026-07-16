@@ -1,5 +1,7 @@
 // src/domain/ports/category.repository.ts
 import type { Category } from '../entities/category.entity'
+import type { CategoryStats } from '../entities/category-stats.entity'
+
 
 export interface CategoryRepository {
   getCategories(): Promise<Category[]>
@@ -14,5 +16,5 @@ export interface CategoryRepository {
     payload: { name?: string; description?: string; is_active?: boolean },
   ): Promise<Category>
   deleteCategory(id: number): Promise<void>
-  getState(): Promise<Category[]>
+  getStats(): Promise<CategoryStats>
 }

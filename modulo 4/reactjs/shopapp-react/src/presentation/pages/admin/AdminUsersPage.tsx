@@ -216,7 +216,7 @@ export default function AdminUsersPage() {
                                   <Switch
                                     checked={user.is_staff}
                                     disabled={self}
-                                    onCheckedChange={(val) => handleStaffToggleIntent(user, val)}
+                                    onCheckedChange={(val: boolean) => handleStaffToggleIntent(user, val)}
                                     aria-label={`Cambiar rol de ${user.username}`}
                                     className="data-[state=checked]:bg-purple-600"
                                   />

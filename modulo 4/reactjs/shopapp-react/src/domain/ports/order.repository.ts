@@ -10,4 +10,5 @@ export interface OrderRepository {
   addItem(orderId: number, payload: { product_id: number; quantity: number }): Promise<Order>
   confirmOrder(orderId: number): Promise<Order>
   updateOrderStatus(id: number, status: OrderStatus): Promise<Order>
+  getStats(): Promise<import('../entities/order-stats.entity').OrderStats>
 }
