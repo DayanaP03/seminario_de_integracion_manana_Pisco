@@ -22,6 +22,18 @@ import DocumentTitle_mp from './02useEffect/DocumentTitle_mp'
 import FechUsermp from './02useEffect/FetchUser_mp'
 import AutoFocusForm_mp from './03useRef/AutoFocusForm_mp'
 import InlineEditor_mp from './03useRef/InlineEditor_mp'
+import ColoredBox_mp from './components/ColoredBox_mp'
+import ConditionalGreenting_mp from './components/ConditionalGreeting_mp'
+import CurrentDataDisplay_mp from './components/CurrentDateDisplay_mp'
+import ListaDeAmenidades from './components/FruitList_MP'
+import MiniProfileCard_mp from './components/MiniProfileCard_mp'
+import PriceTag_mp from './components/PriceTag_mp'
+import ProductCard_mp from './components/ProductCard_mp'
+import ProductCatalogList_mp from './components/ProductCatalogList_mp'
+import SimpleInfoTable_mp from './components/SimpleInfoTable_mp'
+import UserGreeting_mp from './components/UserGreeting_mp'
+import UserProfileCard_mp from './components/UserProfileCard_mp'
+import WelcomeBanner_mp from './components/WelcomeBanner_mp'
 
 // ┌──────────────────────────────────────────────────────────────────────────┐
 // │  Cambia PASO y guarda (Ctrl+S) para navegar entre componentes.          │
@@ -39,7 +51,7 @@ import InlineEditor_mp from './03useRef/InlineEditor_mp'
 // │  12  ProductCatalogList  — lista con renderizado condicional de items   │
 // │  13  UserProfileCard     — ejercicio: props complejas + rol             │
 // └──────────────────────────────────────────────────────────────────────────┘
-const PASO: number = 21
+const PASO: number = 33
 
 const fruits = [
   { name: 'Manzana', emoji: '🍎', calories: 52 },
@@ -52,6 +64,20 @@ const catalog = [
   { id: 2, name: 'Monitor 27 pulgadas', price: 349.99 },
   { id: 3, name: 'Mouse inalámbrico', price: 29.99, outOfStock: true },
   { id: 4, name: 'Webcam HD',         price: 59.99 },
+]
+const listaCortesias = [
+  { nombre: 'Jabón Artesanal', icono: '', precio: 5.00 },
+  { nombre: 'Bata de Baño', icono: '', precio: 15.00 },
+  { nombre: 'Café Premium', icono: '', precio: 3.50 }
+]
+const servicios = [
+  { id: 1, nombre: 'Traslado al aeropuerto', precio: 25.00 },
+  { id: 2, nombre: 'Tour de ciudad', precio: 45.00, sinCupo: true }
+]
+const detallesReserva = [
+  { etiqueta: 'Habitación', valor: 'Suite Deluxe 402' },
+  { etiqueta: 'Check-in', valor: '18 Julio' },
+  { etiqueta: 'Total', valor: '$450.00', resaltar: true }
 ]
 
 export default function App() {
@@ -129,6 +155,84 @@ export default function App() {
    PASO === 19 ? <FechUsermp /> :
    PASO === 20 ? <AutoFocusForm_mp /> :
    PASO === 21 ? <InlineEditor_mp /> :
+   PASO === 22 ? (
+  <div style={{ display: 'flex', gap: 10 }}>
+    <ColoredBox_mp color="#2ed573" estado="Disponible" />
+    <ColoredBox_mp color="#ff4757" estado="Ocupada" />
+    <ColoredBox_mp color="#ffa502" estado="En Limpieza" />
+  </div>
+) :
+  PASO === 23 ? (
+  <ConditionalGreenting_mp 
+    estaConectado={true} 
+    nombreUsuario="Administrador" 
+    momentoDelDia="mañana" 
+  />
+) :
+  PASO === 24 ? <CurrentDataDisplay_mp /> :
+  PASO === 25 ? (
+  <ListaDeAmenidades frutas={listaCortesias} titulo="Cortesías de Habitación" />
+) :
+  PASO === 26? (
+  <MiniProfileCard_mp 
+    nombreCompleto="Carlos Méndez" 
+    puesto="Gerente de Recepción" 
+    departamento="Front Office" 
+    estado="active" 
+    añoDeIngreso={2022} 
+  />
+) : 
+PASO === 27 ? (
+  <PriceTag_mp  monto={150.00}  moneda="USD" descuentoPorcentaje={10} 
+  />
+) : 
+PASO === 28 ? (
+  <ProductCard_mp
+    titulo="Suite Presidencial" 
+    descripcion="Habitación con vista al mar y servicio de conserjería 24/7." 
+    destacada={true} 
+  />
+) : 
+PASO === 29 ? (
+  <ProductCatalogList_mp 
+    servicios={servicios} 
+    titulo="Servicios Disponibles" 
+  />
+) : 
+PASO === 30 ? (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <span>Reserva #101:</span>
+      <UserGreeting_mp name="Ana García" occupation="Desarrolladora fullstack" />
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <span>Reserva #102:</span>
+      <UserGreeting_mp name="Luis Pérez" occupation="Recepcionista" />
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <span>Reserva #103:</span>
+      <UserGreeting_mp name="Marta López" occupation="Ama de Llaves" />
+    </div>
+  </div>
+) :
+PASO === 31 ? (
+  <UserGreeting_mp
+    name="Elena Vaca" 
+    occupation="Gerente de Recepción" 
+  />
+) :
+
+PASO === 32 ? (
+  <UserProfileCard_mp
+    fullName="Carlos Méndez"
+    email="c.mendez@hotel.com"
+    role="admin"
+    isActive={true}
+    skills={['Gestión de Personal', 'Idiomas', 'Reserva de Eventos']}
+    bio="Gerente con 10 años de experiencia en la industria hotelera, especializado en atención al cliente de alto nivel."
+  />
+) : 
+PASO ===  33 ? <WelcomeBanner_mp /> :
     <p style={{ color: '#e00' }}>Paso {PASO}: crea el componente primero</p>
 
 
